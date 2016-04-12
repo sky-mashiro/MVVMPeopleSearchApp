@@ -1,0 +1,117 @@
+﻿<controls:MetroWindow x:Class="PeopleSearchApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PeopleSearchApp"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:vm="clr-namespace:PeopleSearchApp.ViewModel"
+        xmlns:converters="clr-namespace:PeopleSearchApp.Model"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="430"  Width="680">
+    <Window.Resources>
+        <converters:ImageByteArray x:Key="imgConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <TabControl BorderBrush="Green">
+        <TabItem Header="Search" BorderBrush="Green">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="500" Margin="5, 10" Text="{Binding keyWord, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+                    <Button Content="Search" Width="100" Margin="10" Command="{Binding SearchCommand}"/>
+                </StackPanel>
+                <DockPanel Height="300">
+                    <DataGrid ItemsSource="{Binding People}" AutoGenerateColumns="False" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                            <DataGridTemplateColumn Header="Photo" Width="SizeToCells">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding photo, Converter={StaticResource ResourceKey=imgConverter}}" Height="50" Width="50"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="First name" Binding="{Binding firstName}"/>
+                            <DataGridTextColumn Header="Last name" Binding="{Binding lastName}"/>
+                            <DataGridTextColumn Header="Age" Binding="{Binding age}"/>
+                            <DataGridTextColumn Header="Street" Binding="{Binding address.street}"/>
+                            <DataGridTextColumn Header="City" Binding="{Binding address.city}"/>
+                            <DataGridTextColumn Header="State" Binding="{Binding address.state}"/>
+                            <DataGridTextColumn Header="Zip" Binding="{Binding address.zip}"/>
+                            <DataGridTextColumn Header="Interest" Binding="{Binding interest}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </StackPanel>
+        </TabItem>
+        
+        <TabItem Header="Add" BorderBrush="Green">
+            
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock FontSize="17">
+                        <TextBlock Text="Note: Attribte with" Margin="5, 10" Foreground="Gray"/>
+                        <TextBlock Text=" * " Foreground="Red"/>
+                    </TextBlock>
+                    <TextBlock Text="need to be filled" Margin="5, 10" FontSize="17" Foreground="Gray"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock FontSize="17">
+                        <TextBlock Text="First Name" Margin="5, 10"/>
+                        <TextBlock Text="*" Foreground="Red"/>
+                    </TextBlock>
+                    <TextBox Width="170" Margin="5, 10" Text="{Binding NewPerson.firstName, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+                    <TextBlock FontSize="17">
+                        <TextBlock Text="Last Name" Margin="5, 10"/>
+                        <TextBlock Text="*" Foreground="Red"/>
+                    </TextBlock>
+                    <TextBox Width="170" Margin="5, 10" Text="{Binding NewPerson.lastName, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+                    <TextBlock Text="Age" Margin="5, 10" FontSize="17"/>
+                    <TextBox Width="50" Margin="5, 10" Text="{Binding NewPerson.age, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock  FontSize="17">
+                        <TextBlock Text="Street" Margin="5, 10"/>
+                        <TextBlock Text="*" Foreground="Red"/>
+                    </TextBlock>
+                    <TextBox Width="400" Margin="5, 10" Text="{Binding NewPerson.address.street}" FontSize="17"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock FontSize="17">
+                        <TextBlock Text="City" Margin="5, 10"/>
+                        <TextBlock Text="*" Foreground="Red"/>
+                    </TextBlock>
+                    <TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.city}" FontSize="17"/>
+                    <TextBlock FontSize="17">
+                        <TextBlock Text="State" Margin="5, 10"/>
+                        <TextBlock Text="*" Foreground="Red"/>
+                    </TextBlock>
+                    <TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.state}" FontSize="17"/>
+                    <TextBlock FontSize="17">
+                        <TextBlock Text="Zip" Margin="5, 10"/>
+                        <TextBlock Text="* " Foreground="Red"/>
+                    </TextBlock>
+                    <TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.zip}" FontSize="17"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Photo" Margin="5, 10" FontSize="17"/>
+                    <TextBox Width="320" Margin="5, 10" IsReadOnly="True" Text="{Binding ImagePath}" FontSize="17"/>
+                    <Button Content="Browse" Width="80" Margin="10" Command="{Binding BrowseCommand}"/>
+                    <TextBlock Text="(Image size no bigger than 2MB)" Margin="5, 10" Foreground="Gray"  VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <Button Content="Add" Width="200" Margin="10" Command="{Binding AddCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+
+
+</controls:MetroWindow>
