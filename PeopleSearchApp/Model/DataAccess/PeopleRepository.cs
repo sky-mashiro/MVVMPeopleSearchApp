@@ -34,29 +34,30 @@ namespace PeopleSearchApp.Model.DataAccess
                 potrait = converter.ImagePathToByteArray(imagePath);
             }
 
-            Person newPerson = new Person
+            Person newPerson = new Person()
             {
                 ID = someOne.ID,
                 firstName = someOne.firstName,
                 lastName = someOne.lastName,
                 age = someOne.age,
-                address = new Address
-                {
-                    street = "fasdf",
-                    city = "fasdf",
-                    state = "Az",
-                    zip = "85281"
-                },
                 //address = new Address
                 //{
-                //    street = someOne.address.street,
-                //    city = someOne.address.city,
-                //    state = someOne.address.state,
-                //    zip = someOne.address.zip
+                //    street = "fasdf",
+                //    city = "fasdf",
+                //    state = "Az",
+                //    zip = "85281"
                 //},
-                interest = "Football",
+                address = new Address()
+                {
+                    street = someOne.address.street,
+                    city = someOne.address.city,
+                    state = someOne.address.state,
+                    zip = someOne.address.zip
+                },
+                interest = someOne.interest,
                 photo = potrait
             };
+
             context.People.Add(newPerson);
             context.SaveChanges();
             //return new ObservableCollection<Person>(resultFirstName.Union(resultLastName));

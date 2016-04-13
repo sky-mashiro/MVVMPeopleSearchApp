@@ -13,5 +13,13 @@ namespace PeopleSearchApp.Model
         public string state { get; set; }
         public string zip { get; set; }
 
+        //public Address()
+        //{
+        //    street = "";
+        //    city = "";
+        //    state = "";
+        //    zip = "";
+        //}
+
     }
 }

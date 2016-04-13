@@ -22,5 +22,11 @@ namespace PeopleSearchApp.Model
         public string interest { get; set; }
 
         public byte[] photo { get; set; }
+
+        public Person()
+        {
+            address = new Address();
+            //interest = "";
+        }
     }
 }
