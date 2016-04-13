@@ -21,15 +21,19 @@
 
     <TabControl BorderBrush="Green">
         <TabItem Header="Search" BorderBrush="Green">
+            
             <StackPanel>
+                
                 <StackPanel Orientation="Horizontal">
                     <TextBox Width="500" Margin="5, 10" Text="{Binding keyWord, UpdateSourceTrigger=PropertyChanged}" FontSize="17">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Enter" Command="{Binding SearchCommand}"/>
                         </TextBox.InputBindings>
                     </TextBox>
+                    
                     <Button Content="Search" Width="100" Margin="10" Command="{Binding SearchCommand}"/>
                 </StackPanel>
+                
                 <DockPanel Height="300">
                     <DataGrid ItemsSource="{Binding People}" AutoGenerateColumns="False" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
@@ -53,57 +57,62 @@
                     </DataGrid>
                 </DockPanel>
             </StackPanel>
+            
         </TabItem>
 
         <TabItem Header="Add" BorderBrush="Green">
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    
                     <TextBlock FontSize="17">
                         <TextBlock Text="Note: Attribte with" Margin="5, 10" Foreground="Gray"/>
                         <TextBlock Text=" * " Foreground="Red"/>
                     </TextBlock>
                     <TextBlock Text="need to be filled" Margin="5, 10" FontSize="17" Foreground="Gray"/>
+                    
                     <TextBlock Text="{Binding firstNameError}"/>
                     <TextBlock Text="{Binding lastNameError}"/>
                     <TextBlock Text="{Binding ageError}"/>
+                    
                 </StackPanel>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    
                     <TextBlock FontSize="17">
                         <TextBlock Text="First Name" Margin="5, 10"/>
                         <TextBlock Text="*" Foreground="Red"/>
                     </TextBlock>
-
                     <TextBox vr:ValidationBehavior.HasError="{Binding firstNameError, Mode=TwoWay}" Width="170" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.firstName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:nameRules ValidatesOnTargetUpdated="True"/>
+                                    <vr:NameRules ValidatesOnTargetUpdated="True"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
                     
-                    <!--<TextBox Width="170" Margin="5, 10" Text="{Binding NewPerson.firstName, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>-->
-
                     <TextBlock FontSize="17">
                         <TextBlock Text="Last Name" Margin="5, 10"/>
                         <TextBlock Text="*" Foreground="Red"/>
                     </TextBlock>
-                    <!--<TextBox Width="170" Margin="5, 10" Text="{Binding NewPerson.lastName, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>-->
-
                     <TextBox vr:ValidationBehavior.HasError="{Binding lastNameError, Mode=TwoWay}" Width="170" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.lastName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:nameRules ValidatesOnTargetUpdated="True"/>
+                                    <vr:NameRules ValidatesOnTargetUpdated="True"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
+                
+                </StackPanel>
 
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    
                     <TextBlock Text="Age" Margin="5, 10" FontSize="17"/>
-
                     <TextBox vr:ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.age" UpdateSourceTrigger="PropertyChanged">
@@ -113,39 +122,46 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <!--<TextBox Width="50" Margin="5, 10" Text="{Binding NewPerson.age, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>-->
+                    
+                    <TextBlock Text="Interest" Margin="5, 10" FontSize="17"/>
+                    <TextBox Width="350" Margin="5, 10" Text="{Binding NewPerson.interest, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+                
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock  FontSize="17">
-                        <TextBlock Text="Street" Margin="5, 10"/>
-                    </TextBlock>
+                    <TextBlock Text="Street" Margin="5, 10" FontSize="17"/>
                     <TextBox Width="400" Margin="5, 10" Text="{Binding NewPerson.address.street, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock FontSize="17">
-                        <TextBlock Text="City" Margin="5, 10"/>
-                    </TextBlock>
-                    <TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.city, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
-                    <TextBlock FontSize="17">
-                        <TextBlock Text="State" Margin="5, 10"/>
-                    </TextBlock>
 
+                    <TextBlock Text="City" Margin="5, 10" FontSize="17"/>
+                    <TextBox Width="140" Margin="5, 10" Text="{Binding NewPerson.address.city, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+
+                    <TextBlock Text="State" Margin="5, 10" FontSize="17"/>
                     <ComboBox ItemsSource="{Binding stateName.states}" FontSize="17" SelectedItem="{Binding NewPerson.address.state, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="60"/>
                     
-                    <!--<TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.state}" FontSize="17"/>-->
-                    <TextBlock FontSize="17">
-                        <TextBlock Text="Zip" Margin="5, 10"/>
-                    </TextBlock>
-                    <TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.zip, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+                    <TextBlock Text="Zip" Margin="5, 10" FontSize="17"/>
+                    <!--<TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.zip, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>-->
+                    <TextBox vr:ValidationBehavior.HasError="{Binding zipError, Mode=TwoWay}" Width="65" Margin="5, 10" FontSize="17">
+                        <TextBox.Text>
+                            <Binding Path="NewPerson.address.zip" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <vr:ZipRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    
                     <TextBlock Text="Photo" Margin="5, 10" FontSize="17"/>
                     <TextBox Width="320" Margin="5, 10" IsReadOnly="True" Text="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
                     <Button Content="Browse" Width="80" Margin="10" Command="{Binding BrowseCommand}"/>
                     <TextBlock Text="(Image size no bigger than 2MB)" Margin="5, 10" Foreground="Gray"  VerticalAlignment="Center"/>
+                    
                 </StackPanel>
 
                 <StackPanel>
@@ -164,10 +180,13 @@
                             </Style>
                         </Button.Style>
                     </Button>-->
-                    <Button Content="Add" Width="200" Margin="10" Command="{Binding AddCommand}"/>
+                    <Button Content="Add" Width="240" Margin="10" Command="{Binding AddCommand}"/>
                 </StackPanel>
+                
             </StackPanel>
+            
         </TabItem>
+
     </TabControl>
 
 

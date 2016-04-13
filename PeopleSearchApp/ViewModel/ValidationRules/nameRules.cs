@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace PeopleSearchApp.ViewModel.ValidationRules
 {
-    class nameRules: ValidationRule
+    class NameRules: ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {

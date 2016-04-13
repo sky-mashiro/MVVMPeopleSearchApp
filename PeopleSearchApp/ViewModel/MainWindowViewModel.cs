@@ -28,17 +28,17 @@ namespace PeopleSearchApp.ViewModel
 
         public USStates stateName { get; }
 
-        private string _addressState;
+        //private string _addressState;
 
-        public string AddressState
-        {
-            get { return _addressState; }
-            set
-            {
-                _addressState = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string AddressState
+        //{
+        //    get { return _addressState; }
+        //    set
+        //    {
+        //        _addressState = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private ICommand _generalCommand;
 
@@ -90,13 +90,16 @@ namespace PeopleSearchApp.ViewModel
 
         private bool _ageError;
         public bool ageError { get { return _ageError; } set { _ageError = value; OnPropertyChanged(); } }
+        private bool _zipError;
+        public bool zipError { get { return _zipError; } set { _zipError = value; OnPropertyChanged(); } }
+
         private bool _firstNameError;
         public bool firstNameError { get { return _firstNameError; } set { _firstNameError = value;OnPropertyChanged(); } }
         private bool _lastNameError;
         public bool lastNameError { get { return _lastNameError; } set { _lastNameError = value; OnPropertyChanged(); } }
         public bool HasError
         {
-            get { return !ageError&&!firstNameError&&!lastNameError; }
+            get { return !ageError&&!zipError&&!firstNameError&&!lastNameError; }
         }
 
         public ICommand SearchCommand
@@ -123,6 +126,7 @@ namespace PeopleSearchApp.ViewModel
 
             NewPerson = new Person();
             ageError = false;
+            zipError = false;
             firstNameError = true;
             lastNameError = true;
             ImagePath = "......";
@@ -147,7 +151,7 @@ namespace PeopleSearchApp.ViewModel
             peopleRepo.AddRecord(NewPerson, ImagePath);
             ImagePath = "......";
             //System.Windows.Forms.MessageBox.Show("Successful Added~!"+_dia.ToString());
-            _dia.ShowMessageAsync(this, "Notification", "Succeeded~");
+            _dia.ShowMessageAsync(this, "Notification", "Record successfully added~");
             //System.Windows.Forms.MessageBox.Show("Successful Added~!");
 
             ;
@@ -180,7 +184,8 @@ namespace PeopleSearchApp.ViewModel
                 if (fileSize >= 2)
                 {
                     ImagePath = "......";
-                    System.Windows.Forms.MessageBox.Show("Image cannot be bigger than 2MB!" + Environment.NewLine + "Please choose a new one^_^");
+                    _dia.ShowMessageAsync(this, "Notification", "Image cannot be bigger than 2MB!" + Environment.NewLine + "Please choose a new one^_^");
+                    //System.Windows.Forms.MessageBox.Show("Image cannot be bigger than 2MB!" + Environment.NewLine + "Please choose a new one^_^");
                 }
             }
         }
