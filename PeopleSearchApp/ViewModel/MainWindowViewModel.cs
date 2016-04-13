@@ -17,11 +17,13 @@ using PeopleSearchApp.Model;
 using PeopleSearchApp.Model.DataAccess;
 using PeopleSearchApp.Command;
 using PeopleSearchApp.ViewModel.ValidationRules;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace PeopleSearchApp.ViewModel
 {
     class MainWindowViewModel: ViewModelBase
     {
+        public DialogCoordinator _dia;
         public int count = 4;
 
         public USStates stateName { get; }
@@ -112,9 +114,10 @@ namespace PeopleSearchApp.ViewModel
             get { return _generalCommand = new RelayCommand(BrowseExecute, BrowseCanExecute); }
         }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(DialogCoordinator dia)
         {
             //var context = new PeopleContext();
+            _dia = dia;
             peopleRepo = new PeopleRepository();
             People = peopleRepo.GetAllRecord();
 
@@ -143,6 +146,11 @@ namespace PeopleSearchApp.ViewModel
             NewPerson.ID = count++;
             peopleRepo.AddRecord(NewPerson, ImagePath);
             ImagePath = "......";
+            //System.Windows.Forms.MessageBox.Show("Successful Added~!"+_dia.ToString());
+            _dia.ShowMessageAsync(this, "Notification", "Succeeded~");
+            //System.Windows.Forms.MessageBox.Show("Successful Added~!");
+
+            ;
             People = peopleRepo.GetAllRecord();
         }
         bool AddCanExecute(object param)

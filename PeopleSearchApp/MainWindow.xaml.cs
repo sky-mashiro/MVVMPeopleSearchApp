@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using PeopleSearchApp.ViewModel;
 
 namespace PeopleSearchApp
 {
@@ -24,6 +26,7 @@ namespace PeopleSearchApp
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel(DialogCoordinator.Instance);
         }
     }
 

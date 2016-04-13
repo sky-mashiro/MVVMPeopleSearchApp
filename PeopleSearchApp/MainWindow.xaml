@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PeopleSearchApp"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Dialog ="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        Dialog:DialogParticipation.Register = "{Binding}"
         xmlns:vm="clr-namespace:PeopleSearchApp.ViewModel"
         xmlns:vr="clr-namespace:PeopleSearchApp.ViewModel.ValidationRules"
         xmlns:converters="clr-namespace:PeopleSearchApp.Model"
@@ -13,9 +15,9 @@
     <Window.Resources>
         <converters:ImageByteArray x:Key="imgConverter"/>
     </Window.Resources>
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <TabControl BorderBrush="Green">
         <TabItem Header="Search" BorderBrush="Green">
