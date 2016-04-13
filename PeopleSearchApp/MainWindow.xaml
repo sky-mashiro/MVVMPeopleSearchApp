@@ -23,7 +23,11 @@
         <TabItem Header="Search" BorderBrush="Green">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="500" Margin="5, 10" Text="{Binding keyWord, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>
+                    <TextBox Width="500" Margin="5, 10" Text="{Binding keyWord, UpdateSourceTrigger=PropertyChanged}" FontSize="17">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding SearchCommand}"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
                     <Button Content="Search" Width="100" Margin="10" Command="{Binding SearchCommand}"/>
                 </StackPanel>
                 <DockPanel Height="300">
