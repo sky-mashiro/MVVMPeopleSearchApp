@@ -81,6 +81,7 @@
     <Compile Include="Model\USStates.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ValidationRules\AgeRangeRule.cs" />
+    <Compile Include="ViewModel\ValidationRules\IDRules.cs" />
     <Compile Include="ViewModel\ValidationRules\NameRules.cs" />
     <Compile Include="ViewModel\ValidationRules\ValidationBehavior.cs" />
     <Compile Include="ViewModel\ValidationRules\ZipRules.cs" />

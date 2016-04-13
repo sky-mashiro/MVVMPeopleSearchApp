@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace PeopleSearchApp.Model
 {
     class Person
     {
-        public int ID { get; set; }
-
+        [Key]
+        public Int32 ID { get; set; }
+        [Required]
         public string firstName { get; set; }
-
+        [Required]
         public string lastName { get; set; }
 
         public Address address { get; set; }
@@ -26,7 +28,6 @@ namespace PeopleSearchApp.Model
         public Person()
         {
             address = new Address();
-            //interest = "";
         }
     }
 }

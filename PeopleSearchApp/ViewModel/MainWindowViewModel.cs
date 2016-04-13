@@ -24,7 +24,6 @@ namespace PeopleSearchApp.ViewModel
     class MainWindowViewModel: ViewModelBase
     {
         public DialogCoordinator _dia;
-        public int count = 4;
 
         public USStates stateName { get; }
 
@@ -54,6 +53,17 @@ namespace PeopleSearchApp.ViewModel
             set
             {
                 _newPerson = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _id;
+        public Int32? ID
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
                 OnPropertyChanged();
             }
         }
@@ -88,6 +98,9 @@ namespace PeopleSearchApp.ViewModel
             }
         }
 
+        private bool _idError;
+        public bool idError { get { return _idError; } set { _idError = value; OnPropertyChanged(); } }
+
         private bool _ageError;
         public bool ageError { get { return _ageError; } set { _ageError = value; OnPropertyChanged(); } }
         private bool _zipError;
@@ -99,7 +112,7 @@ namespace PeopleSearchApp.ViewModel
         public bool lastNameError { get { return _lastNameError; } set { _lastNameError = value; OnPropertyChanged(); } }
         public bool HasError
         {
-            get { return !ageError&&!zipError&&!firstNameError&&!lastNameError; }
+            get { return !idError&&!ageError&&!zipError&&!firstNameError&&!lastNameError; }
         }
 
         public ICommand SearchCommand
@@ -127,6 +140,7 @@ namespace PeopleSearchApp.ViewModel
             NewPerson = new Person();
             ageError = false;
             zipError = false;
+            idError = true;
             firstNameError = true;
             lastNameError = true;
             ImagePath = "......";
@@ -147,14 +161,13 @@ namespace PeopleSearchApp.ViewModel
 
         void AddExecute(object param)
         {
-            NewPerson.ID = count++;
+            NewPerson.ID = ID.Value;
             peopleRepo.AddRecord(NewPerson, ImagePath);
             ImagePath = "......";
             //System.Windows.Forms.MessageBox.Show("Successful Added~!"+_dia.ToString());
             _dia.ShowMessageAsync(this, "Notification", "Record successfully added~");
             //System.Windows.Forms.MessageBox.Show("Successful Added~!");
 
-            ;
             People = peopleRepo.GetAllRecord();
         }
         bool AddCanExecute(object param)
@@ -167,6 +180,7 @@ namespace PeopleSearchApp.ViewModel
             //{
             //    return true;
             //}
+            //new AgeRangeRule().Validate(NewPerson.age, null).IsValid
             return HasError;
             //return new AgeRangeRule().Validate(NewPerson.age);
             //else return !Validation.GetHasError(param as DependencyObject);

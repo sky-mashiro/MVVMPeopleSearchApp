@@ -57,7 +57,7 @@ namespace PeopleSearchApp.Model
 
             Person coder3 = new Person
             {
-                ID = 2,
+                ID = 3,
                 firstName = "Weili",
                 lastName = "Yi",
                 address = new Address
@@ -76,7 +76,7 @@ namespace PeopleSearchApp.Model
 
             Person coder4 = new Person
             {
-                ID = 2,
+                ID = 4,
                 firstName = "Xiaoyu",
                 lastName = "Zhang",
                 address = new Address

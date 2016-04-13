@@ -25,12 +25,14 @@ namespace PeopleSearchApp.ViewModel.ValidationRules
 
             try
             {
-                if ((value.ToString()).Length > 0)
-                    age = Int32.Parse((string)value);
+                if (string.IsNullOrEmpty(value as string))
+                    return new ValidationResult(true, null);
+
+                age = Int32.Parse(value as string);
             }
             catch
             {
-                return new ValidationResult(false, "Pleas enter an Integer" + Environment.NewLine + "or left it empty");
+                return new ValidationResult(false, "Pleas enter an Integer age" + Environment.NewLine + "or left it empty");
             }
 
             if ((age < _min) || (age > _max))

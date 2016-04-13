@@ -10,7 +10,12 @@ namespace PeopleSearchApp.Model.DataAccess
 {
     class PeopleRepository
     {
-        private PeopleContext context = new PeopleContext();
+        private PeopleContext context;
+
+        public PeopleRepository()
+        {
+            context = new PeopleContext();
+        }
 
         public ObservableCollection<Person> SelectName(string keyWord)
         {
@@ -66,6 +71,16 @@ namespace PeopleSearchApp.Model.DataAccess
         public ObservableCollection<Person> GetAllRecord()
         {
             return new ObservableCollection<Person>(context.People);
+        }
+
+        public List<int> GetAllID()
+        {
+            List<int> idList = new List<int>();
+
+            idList = (from person in context.People
+                     select person.ID).ToList();
+
+            return idList;
         }
     }
 }

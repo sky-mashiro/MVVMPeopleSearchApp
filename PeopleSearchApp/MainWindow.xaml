@@ -1,6 +1,7 @@
 ﻿<controls:MetroWindow x:Class="PeopleSearchApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PeopleSearchApp"
@@ -70,7 +71,7 @@
                         <TextBlock Text="Note: Attribte with" Margin="5, 10" Foreground="Gray"/>
                         <TextBlock Text=" * " Foreground="Red"/>
                     </TextBlock>
-                    <TextBlock Text="need to be filled" Margin="5, 10" FontSize="17" Foreground="Gray"/>
+                    <TextBlock Text="has to be filled" Margin="5, 10" FontSize="17" Foreground="Gray"/>
                     
                     <TextBlock Text="{Binding firstNameError}"/>
                     <TextBlock Text="{Binding lastNameError}"/>
@@ -79,12 +80,26 @@
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    
+
+                    <TextBlock FontSize="17">
+                        <TextBlock Text="ID" Margin="5, 10"/>
+                        <TextBlock Text="*" Foreground="Red"/>
+                    </TextBlock>
+                    <TextBox vr:ValidationBehavior.HasError="{Binding idError, Mode=TwoWay}" Width="75" Margin="5, 10" FontSize="17" ToolTip="ID is an unique integer">
+                        <TextBox.Text>
+                            <Binding Path="ID" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <vr:IDRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
                     <TextBlock FontSize="17">
                         <TextBlock Text="First Name" Margin="5, 10"/>
                         <TextBlock Text="*" Foreground="Red"/>
                     </TextBlock>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding firstNameError, Mode=TwoWay}" Width="170" Margin="5, 10" FontSize="17">
+                    <TextBox vr:ValidationBehavior.HasError="{Binding firstNameError, Mode=TwoWay}" Width="155" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.firstName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -98,7 +113,7 @@
                         <TextBlock Text="Last Name" Margin="5, 10"/>
                         <TextBlock Text="*" Foreground="Red"/>
                     </TextBlock>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding lastNameError, Mode=TwoWay}" Width="170" Margin="5, 10" FontSize="17">
+                    <TextBox vr:ValidationBehavior.HasError="{Binding lastNameError, Mode=TwoWay}" Width="155" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.lastName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -111,9 +126,9 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    
+
                     <TextBlock Text="Age" Margin="5, 10" FontSize="17"/>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17">
+                    <TextBox vr:ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17" ToolTip="Range 0 - 130">
                         <TextBox.Text>
                             <Binding Path="NewPerson.age" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
