@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 //using System.Windows;
 
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
@@ -13,14 +16,32 @@ using System.IO;
 using PeopleSearchApp.Model;
 using PeopleSearchApp.Model.DataAccess;
 using PeopleSearchApp.Command;
+using PeopleSearchApp.ViewModel.ValidationRules;
 
 namespace PeopleSearchApp.ViewModel
 {
     class MainWindowViewModel: ViewModelBase
     {
         public int count = 4;
-        private ICommand _searchCommand;
+
+        public USStates stateName { get; }
+
+        private string _addressState;
+
+        public string AddressState
+        {
+            get { return _addressState; }
+            set
+            {
+                _addressState = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ICommand _generalCommand;
+
         private PeopleRepository peopleRepo;
+
         private Person _newPerson;
         public Person NewPerson
         {
@@ -65,19 +86,30 @@ namespace PeopleSearchApp.ViewModel
             }
         }
 
+        private bool _ageError;
+        public bool ageError { get { return _ageError; } set { _ageError = value; OnPropertyChanged(); } }
+        private bool _firstNameError;
+        public bool firstNameError { get { return _firstNameError; } set { _firstNameError = value;OnPropertyChanged(); } }
+        private bool _lastNameError;
+        public bool lastNameError { get { return _lastNameError; } set { _lastNameError = value; OnPropertyChanged(); } }
+        public bool HasError
+        {
+            get { return !ageError&&!firstNameError&&!lastNameError; }
+        }
+
         public ICommand SearchCommand
         {
-            get { return _searchCommand = new RelayCommand(SearchExecute, SearchCanExecute); }
+            get { return _generalCommand = new RelayCommand(SearchExecute, SearchCanExecute); }
         }
 
         public ICommand AddCommand
         {
-            get { return _searchCommand = new RelayCommand(AddExecute, AddCanExecute); }
+            get { return _generalCommand = new RelayCommand(AddExecute, AddCanExecute); }
         }
 
         public ICommand BrowseCommand
         {
-            get { return _searchCommand = new RelayCommand(BrowseExecute, BrowseCanExecute); }
+            get { return _generalCommand = new RelayCommand(BrowseExecute, BrowseCanExecute); }
         }
 
         public MainWindowViewModel()
@@ -87,8 +119,13 @@ namespace PeopleSearchApp.ViewModel
             People = peopleRepo.GetAllRecord();
 
             NewPerson = new Person();
+            ageError = false;
+            firstNameError = true;
+            lastNameError = true;
             ImagePath = "......";
             keyWord = "";
+
+            stateName = new USStates();
         }
 
         void SearchExecute(object param)
@@ -110,7 +147,17 @@ namespace PeopleSearchApp.ViewModel
         }
         bool AddCanExecute(object param)
         {
-            return true;
+            //if ((NewPerson.age < 0) || (NewPerson.age > 130))
+            //{
+            //    return false;
+            //}
+            //else
+            //{
+            //    return true;
+            //}
+            return HasError;
+            //return new AgeRangeRule().Validate(NewPerson.age);
+            //else return !Validation.GetHasError(param as DependencyObject);
         }
 
         void BrowseExecute(object param)
@@ -125,7 +172,7 @@ namespace PeopleSearchApp.ViewModel
                 if (fileSize >= 2)
                 {
                     ImagePath = "......";
-                    MessageBox.Show("Image cannot be bigger than 2MB!" + Environment.NewLine + "Please choose a new one^_^");
+                    System.Windows.Forms.MessageBox.Show("Image cannot be bigger than 2MB!" + Environment.NewLine + "Please choose a new one^_^");
                 }
             }
         }

@@ -78,7 +78,11 @@
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\DataAccess\PeopleRepository.cs" />
     <Compile Include="Model\ImageByteArray.cs" />
+    <Compile Include="Model\USStates.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ValidationRules\AgeRangeRule.cs" />
+    <Compile Include="ViewModel\ValidationRules\nameRules.cs" />
+    <Compile Include="ViewModel\ValidationRules\ValidationBehavior.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

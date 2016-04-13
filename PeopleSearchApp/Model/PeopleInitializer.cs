@@ -29,7 +29,7 @@ namespace PeopleSearchApp.Model
                     state = "AZ",
                     zip = "85281"
                 } ,
-                age = 22,
+                age = "22",
                 interest = "Football",
                 photo = coderPhoto
             };
@@ -48,7 +48,7 @@ namespace PeopleSearchApp.Model
                     state = "AZ",
                     zip = "85281"
                 },
-                age = 23,
+                age = "23",
                 interest = "Game",
                 photo = coderPhoto
             };
@@ -67,7 +67,7 @@ namespace PeopleSearchApp.Model
                     state = "AZ",
                     zip = "85281"
                 },
-                age = 23,
+                age = "23",
                 interest = "Movie",
                 photo = coderPhoto
             };
@@ -86,7 +86,7 @@ namespace PeopleSearchApp.Model
                     state = "AZ",
                     zip = "85202"
                 },
-                age = 23,
+                age = "23",
                 interest = "Code",
                 photo = coderPhoto
             };
