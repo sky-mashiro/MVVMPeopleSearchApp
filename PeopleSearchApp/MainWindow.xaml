@@ -75,7 +75,10 @@
                     
                     <TextBlock Text="{Binding firstNameError}"/>
                     <TextBlock Text="{Binding lastNameError}"/>
+                    <TextBlock Text="{Binding idError}"/>
                     <TextBlock Text="{Binding ageError}"/>
+                    <TextBlock Text="{Binding zipError}"/>
+                    <TextBlock Text="{Binding ID}"/>
                     
                 </StackPanel>
                 
@@ -89,7 +92,7 @@
                         <TextBox.Text>
                             <Binding Path="ID" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:IDRules/>
+                                    <vr:IDRules ValidationStep="UpdatedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -103,7 +106,7 @@
                         <TextBox.Text>
                             <Binding Path="NewPerson.firstName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:NameRules ValidatesOnTargetUpdated="True"/>
+                                    <vr:FirstNameRules ValidationStep="UpdatedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -117,7 +120,7 @@
                         <TextBox.Text>
                             <Binding Path="NewPerson.lastName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:NameRules ValidatesOnTargetUpdated="True"/>
+                                    <vr:LastNameRules ValidationStep="UpdatedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -132,7 +135,7 @@
                         <TextBox.Text>
                             <Binding Path="NewPerson.age" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:AgeRangeRule/>
+                                    <vr:AgeRangeRule ValidatesOnTargetUpdated="True"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>

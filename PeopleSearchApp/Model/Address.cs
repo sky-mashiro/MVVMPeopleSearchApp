@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PeopleSearchApp.Model
 {
-    class Address
+    public class Address
     {
         public string street { get; set; }
         public string city { get; set; }

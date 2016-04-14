@@ -21,7 +21,7 @@ using MahApps.Metro.Controls.Dialogs;
 
 namespace PeopleSearchApp.ViewModel
 {
-    class MainWindowViewModel: ViewModelBase
+    public class MainWindowViewModel: ViewModelBase
     {
         public DialogCoordinator _dia;
 
@@ -57,13 +57,24 @@ namespace PeopleSearchApp.ViewModel
             }
         }
 
-        private Int32? _id;
-        public Int32? ID
+        private string _id;
+        public string ID
         {
             get { return _id; }
             set
             {
                 _id = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _age;
+        public string Age
+        {
+            get { return _age; }
+            set
+            {
+                _age = value;
                 OnPropertyChanged();
             }
         }
@@ -110,7 +121,7 @@ namespace PeopleSearchApp.ViewModel
         public bool firstNameError { get { return _firstNameError; } set { _firstNameError = value;OnPropertyChanged(); } }
         private bool _lastNameError;
         public bool lastNameError { get { return _lastNameError; } set { _lastNameError = value; OnPropertyChanged(); } }
-        public bool HasError
+        public bool NoError
         {
             get { return !idError&&!ageError&&!zipError&&!firstNameError&&!lastNameError; }
         }
@@ -161,7 +172,8 @@ namespace PeopleSearchApp.ViewModel
 
         void AddExecute(object param)
         {
-            NewPerson.ID = ID.Value;
+            NewPerson.ID = Int32.Parse(ID);
+            //NewPerson.age = 
             peopleRepo.AddRecord(NewPerson, ImagePath);
             ImagePath = "......";
             //System.Windows.Forms.MessageBox.Show("Successful Added~!"+_dia.ToString());
@@ -180,8 +192,13 @@ namespace PeopleSearchApp.ViewModel
             //{
             //    return true;
             //}
-            //new AgeRangeRule().Validate(NewPerson.age, null).IsValid
-            return HasError;
+            idError = !(new IDRules().Validate(ID, null).IsValid);
+            firstNameError = !(new FirstNameRules().Validate(NewPerson.firstName, null).IsValid);
+            lastNameError = !(new LastNameRules().Validate(NewPerson.lastName, null).IsValid);
+            ageError = !(new AgeRangeRule().Validate(NewPerson.age, null).IsValid);
+            zipError = !(new ZipRules().Validate(NewPerson.address.zip, null).IsValid);
+
+            return NoError;
             //return new AgeRangeRule().Validate(NewPerson.age);
             //else return !Validation.GetHasError(param as DependencyObject);
         }

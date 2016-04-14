@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Globalization;
+using System.Windows.Data;
 using PeopleSearchApp.Model.DataAccess;
 
 namespace PeopleSearchApp.ViewModel.ValidationRules
@@ -15,12 +16,26 @@ namespace PeopleSearchApp.ViewModel.ValidationRules
         {
             int id = 0;
 
+            string _id = "";
+
+            if (value is BindingExpression)
+            {
+                var be = value as BindingExpression;
+                if (be != null)
+                {
+                    var item = be.DataItem as MainWindowViewModel;
+                    _id = item.ID;
+                }
+            }
+            else
+                _id = value as string;
+
             try
             {
-                if (string.IsNullOrEmpty(value as string))
+                if (string.IsNullOrEmpty(_id))
                     return new ValidationResult(false, "ID cannot be empty");
 
-                id = Int32.Parse(value as string);
+                id = Int32.Parse(_id);
             }
             catch
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PeopleSearchApp.Model
 {
-    class USStates
+    public class USStates
     {
         public List<string> states { get; }
 

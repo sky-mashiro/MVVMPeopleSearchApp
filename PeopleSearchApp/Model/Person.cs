@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PeopleSearchApp.Model
 {
-    class Person
+    public class Person
     {
         [Key]
         public Int32 ID { get; set; }
