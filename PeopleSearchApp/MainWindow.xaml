@@ -131,7 +131,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
                     <TextBlock Text="Age" Margin="5, 10" FontSize="17"/>
-                    <TextBox :ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17" ToolTip="Range 0 - 130">
+                    <TextBox vr:ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17" ToolTip="Range 0 - 130">
                         <TextBox.Text>
                             <Binding Path="NewPerson.age" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
