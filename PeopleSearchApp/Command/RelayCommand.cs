@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace PeopleSearchApp.Command
 {
+    //The base command class
     class RelayCommand : ICommand
     {
         #region ICommand

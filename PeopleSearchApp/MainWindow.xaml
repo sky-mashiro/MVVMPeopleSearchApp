@@ -12,7 +12,7 @@
         xmlns:vr="clr-namespace:PeopleSearchApp.ViewModel.ValidationRules"
         xmlns:converters="clr-namespace:PeopleSearchApp.Model"
         mc:Ignorable="d"
-        Title="MainWindow" Height="430"  Width="680">
+        Title="People Search App" Height="430"  Width="680">
     <Window.Resources>
         <converters:ImageByteArray x:Key="imgConverter"/>
     </Window.Resources>

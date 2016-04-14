@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PeopleSearchApp.Model
 {
+    //Used to show stated in combobox
     public class USStates
     {
         public List<string> states { get; }

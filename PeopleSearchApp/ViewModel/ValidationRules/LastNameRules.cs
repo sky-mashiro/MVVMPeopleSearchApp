@@ -11,6 +11,7 @@ namespace PeopleSearchApp.ViewModel.ValidationRules
 {
     class LastNameRules : ValidationRule
     {
+        //Used to validate the name
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string name = "";
@@ -25,12 +26,15 @@ namespace PeopleSearchApp.ViewModel.ValidationRules
                 }
             }
             else
+            {
                 name = value as string;
+            }
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
             {
                 return new ValidationResult(false, "Last name cannot be empty");
             }
+
 
             return new ValidationResult(true, null);
         }

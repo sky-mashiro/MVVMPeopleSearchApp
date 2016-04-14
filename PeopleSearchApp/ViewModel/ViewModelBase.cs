@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace PeopleSearchApp.ViewModel
 {
+    //Base class for viewmodel class
     public abstract class ViewModelBase : INotifyPropertyChanged, IDisposable
     {
         protected ViewModelBase()

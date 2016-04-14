@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 namespace PeopleSearchApp.ViewModel.ValidationRules
 {
+    //Used to validate age, range 0 -130 or empty
     class AgeRangeRule: ValidationRule
     {
         private int _min;

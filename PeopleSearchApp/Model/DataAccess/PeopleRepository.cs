@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 
 namespace PeopleSearchApp.Model.DataAccess
 {
+
+    //Wrap with add, select functions, so viewmodel can call these functions from here
     public class PeopleRepository
     {
         private PeopleContext context;
@@ -18,6 +20,13 @@ namespace PeopleSearchApp.Model.DataAccess
             context = new PeopleContext();
         }
 
+        //This constructor is for unit test only
+        public PeopleRepository(PeopleContext _context)
+        {
+            context = _context;
+        }
+
+        //Select method
         public ObservableCollection<Person> SelectName(string keyWord)
         {
             var resultFirstName = from b in context.People
@@ -31,38 +40,17 @@ namespace PeopleSearchApp.Model.DataAccess
             return new ObservableCollection<Person>(resultFirstName.Union(resultLastName));
         }
 
+        //Add a record
         public void AddRecord(Person someOne, string imagePath)
         {
             byte[] potrait = null;
-            if (!imagePath.Equals("......"))
+            //Check if there is a valid image path
+            if (!string.IsNullOrEmpty(imagePath) && !imagePath.Equals("......"))
             {
                 ImageByteArray converter = new ImageByteArray();
                 potrait = converter.ImagePathToByteArray(imagePath);
             }
 
-            //Person newPerson = new Person()
-            //{
-            //    ID = someOne.ID,
-            //    firstName = someOne.firstName,
-            //    lastName = someOne.lastName,
-            //    age = someOne.age,
-            //    //address = new Address
-            //    //{
-            //    //    street = "fasdf",
-            //    //    city = "fasdf",
-            //    //    state = "Az",
-            //    //    zip = "85281"
-            //    //},
-            //    address = new Address()
-            //    {
-            //        street = someOne.address.street,
-            //        city = someOne.address.city,
-            //        state = someOne.address.state,
-            //        zip = someOne.address.zip
-            //    },
-            //    interest = someOne.interest,
-            //    photo = potrait
-            //};
             someOne.photo = potrait;
 
             context.People.Add(someOne);
@@ -70,11 +58,13 @@ namespace PeopleSearchApp.Model.DataAccess
             //return new ObservableCollection<Person>(resultFirstName.Union(resultLastName));
         }
 
+        //Select *
         public ObservableCollection<Person> GetAllRecord()
         {
             return new ObservableCollection<Person>(context.People);
         }
 
+        //Select all ID for duplicate check
         public List<int> GetAllID()
         {
             List<int> idList = new List<int>();

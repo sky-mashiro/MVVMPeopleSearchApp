@@ -13,6 +13,8 @@ namespace PeopleSearchApp.Model
         {
             Database.SetInitializer<PeopleContext>(new PeopleInitializer());
         }
-        public DbSet<Person> People { get; set; }
+
+        //Virstual is for unit test mock
+        public virtual DbSet<Person> People { get; set; }
     }
 }

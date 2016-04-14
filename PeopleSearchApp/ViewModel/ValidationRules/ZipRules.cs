@@ -12,6 +12,7 @@ namespace PeopleSearchApp.ViewModel.ValidationRules
 {
     class ZipRules: ValidationRule
     {
+        //Used to check if is a valid US zip
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string zip = "";
