@@ -27,18 +27,6 @@ namespace PeopleSearchApp.ViewModel
 
         public USStates stateName { get; }
 
-        //private string _addressState;
-
-        //public string AddressState
-        //{
-        //    get { return _addressState; }
-        //    set
-        //    {
-        //        _addressState = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         private ICommand _generalCommand;
 
         private PeopleRepository peopleRepo;

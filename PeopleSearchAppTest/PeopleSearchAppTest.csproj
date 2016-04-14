@@ -81,7 +81,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MockModel\PeopleRepository.cs" />
     <Compile Include="ModelTest.cs" />
     <Compile Include="ViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

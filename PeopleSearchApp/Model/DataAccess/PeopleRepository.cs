@@ -10,7 +10,7 @@ namespace PeopleSearchApp.Model.DataAccess
 {
     public class PeopleRepository
     {
-        public virtual PeopleContext context { get; set; }
+        private PeopleContext context;
 
 
         public PeopleRepository()

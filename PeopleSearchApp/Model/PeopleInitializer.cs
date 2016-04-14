@@ -8,7 +8,7 @@ using System.IO;
 
 namespace PeopleSearchApp.Model
 {
-    class PeopleInitializer: DropCreateDatabaseAlways<PeopleContext>
+    public class PeopleInitializer: DropCreateDatabaseAlways<PeopleContext>
     //DropCreateDatabaseIfModelChanges<PeopleContext>
     //DropCreateDatabaseAlways<PeopleContext>
     {

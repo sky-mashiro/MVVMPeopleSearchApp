@@ -13,6 +13,6 @@ namespace PeopleSearchApp.Model
         {
             Database.SetInitializer<PeopleContext>(new PeopleInitializer());
         }
-        public virtual DbSet<Person> People { get; set; }
+        public DbSet<Person> People { get; set; }
     }
 }
