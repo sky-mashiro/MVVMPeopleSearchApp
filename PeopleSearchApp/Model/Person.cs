@@ -19,7 +19,7 @@ namespace PeopleSearchApp.Model
         [Required]
         public string lastName { get; set; }
 
-        public Address address { get; set; }
+        public virtual Address address { get; set; }
 
         public string age { get; set; }
 

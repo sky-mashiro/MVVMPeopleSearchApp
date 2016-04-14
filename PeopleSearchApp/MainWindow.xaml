@@ -73,13 +73,6 @@
                     </TextBlock>
                     <TextBlock Text="has to be filled" Margin="5, 10" FontSize="17" Foreground="Gray"/>
                     
-                    <TextBlock Text="{Binding firstNameError}"/>
-                    <TextBlock Text="{Binding lastNameError}"/>
-                    <TextBlock Text="{Binding idError}"/>
-                    <TextBlock Text="{Binding ageError}"/>
-                    <TextBlock Text="{Binding zipError}"/>
-                    <TextBlock Text="{Binding ID}"/>
-                    
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -88,7 +81,7 @@
                         <TextBlock Text="ID" Margin="5, 10"/>
                         <TextBlock Text="*" Foreground="Red"/>
                     </TextBlock>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding idError, Mode=TwoWay}" Width="75" Margin="5, 10" FontSize="17" ToolTip="ID is an unique integer">
+                    <TextBox Width="75" Margin="5, 10" FontSize="17" ToolTip="ID is an unique integer">
                         <TextBox.Text>
                             <Binding Path="ID" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -102,7 +95,7 @@
                         <TextBlock Text="First Name" Margin="5, 10"/>
                         <TextBlock Text="*" Foreground="Red"/>
                     </TextBlock>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding firstNameError, Mode=TwoWay}" Width="155" Margin="5, 10" FontSize="17">
+                    <TextBox Width="155" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.firstName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -116,7 +109,7 @@
                         <TextBlock Text="Last Name" Margin="5, 10"/>
                         <TextBlock Text="*" Foreground="Red"/>
                     </TextBlock>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding lastNameError, Mode=TwoWay}" Width="155" Margin="5, 10" FontSize="17">
+                    <TextBox Width="155" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.lastName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -131,7 +124,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
                     <TextBlock Text="Age" Margin="5, 10" FontSize="17"/>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17" ToolTip="Range 0 - 130">
+                    <TextBox Width="50" Margin="5, 10" FontSize="17" ToolTip="Range 0 - 130">
                         <TextBox.Text>
                             <Binding Path="NewPerson.age" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -160,8 +153,8 @@
                     <ComboBox ItemsSource="{Binding stateName.states}" FontSize="17" SelectedItem="{Binding NewPerson.address.state, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="60"/>
                     
                     <TextBlock Text="Zip" Margin="5, 10" FontSize="17"/>
-                    <!--<TextBox Width="150" Margin="5, 10" Text="{Binding NewPerson.address.zip, UpdateSourceTrigger=PropertyChanged}" FontSize="17"/>-->
-                    <TextBox vr:ValidationBehavior.HasError="{Binding zipError, Mode=TwoWay}" Width="65" Margin="5, 10" FontSize="17">
+                    
+                    <TextBox Width="65" Margin="5, 10" FontSize="17">
                         <TextBox.Text>
                             <Binding Path="NewPerson.address.zip" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>

@@ -7,12 +7,12 @@ using System.Data.Entity;
 
 namespace PeopleSearchApp.Model
 {
-    class PeopleContext: DbContext
+    public class PeopleContext: DbContext
     {
         public PeopleContext(): base("PeopleDatabase")
         {
             Database.SetInitializer<PeopleContext>(new PeopleInitializer());
         }
-        public DbSet<Person> People { get; set; }
+        public virtual DbSet<Person> People { get; set; }
     }
 }

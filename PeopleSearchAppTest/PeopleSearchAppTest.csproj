@@ -35,7 +35,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Testing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkTesting.1.2.0\lib\net45\EntityFramework.Testing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Testing.Moq, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkTesting.Moq.1.2.0\lib\net45\EntityFramework.Testing.Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1409.1722, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -45,11 +74,15 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MockModel\PeopleRepository.cs" />
+    <Compile Include="ModelTest.cs" />
     <Compile Include="ViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +91,10 @@
       <Project>{b351f1f4-511a-47ba-a94f-1747a6badadf}</Project>
       <Name>PeopleSearchApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
