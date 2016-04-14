@@ -39,31 +39,32 @@ namespace PeopleSearchApp.Model.DataAccess
                 potrait = converter.ImagePathToByteArray(imagePath);
             }
 
-            Person newPerson = new Person()
-            {
-                ID = someOne.ID,
-                firstName = someOne.firstName,
-                lastName = someOne.lastName,
-                age = someOne.age,
-                //address = new Address
-                //{
-                //    street = "fasdf",
-                //    city = "fasdf",
-                //    state = "Az",
-                //    zip = "85281"
-                //},
-                address = new Address()
-                {
-                    street = someOne.address.street,
-                    city = someOne.address.city,
-                    state = someOne.address.state,
-                    zip = someOne.address.zip
-                },
-                interest = someOne.interest,
-                photo = potrait
-            };
+            //Person newPerson = new Person()
+            //{
+            //    ID = someOne.ID,
+            //    firstName = someOne.firstName,
+            //    lastName = someOne.lastName,
+            //    age = someOne.age,
+            //    //address = new Address
+            //    //{
+            //    //    street = "fasdf",
+            //    //    city = "fasdf",
+            //    //    state = "Az",
+            //    //    zip = "85281"
+            //    //},
+            //    address = new Address()
+            //    {
+            //        street = someOne.address.street,
+            //        city = someOne.address.city,
+            //        state = someOne.address.state,
+            //        zip = someOne.address.zip
+            //    },
+            //    interest = someOne.interest,
+            //    photo = potrait
+            //};
+            someOne.photo = potrait;
 
-            context.People.Add(newPerson);
+            context.People.Add(someOne);
             context.SaveChanges();
             //return new ObservableCollection<Person>(resultFirstName.Union(resultLastName));
         }

@@ -8,7 +8,8 @@ using System.IO;
 
 namespace PeopleSearchApp.Model
 {
-    class PeopleInitializer: DropCreateDatabaseAlways<PeopleContext>
+    class PeopleInitializer: DropCreateDatabaseIfModelChanges<PeopleContext>
+        //DropCreateDatabaseAlways<PeopleContext>
     {
         //Override the seed method to Seed data into database
         protected override void Seed(PeopleContext context)

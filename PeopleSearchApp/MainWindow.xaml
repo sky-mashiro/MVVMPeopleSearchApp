@@ -131,11 +131,11 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
                     <TextBlock Text="Age" Margin="5, 10" FontSize="17"/>
-                    <TextBox vr:ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17" ToolTip="Range 0 - 130">
+                    <TextBox :ValidationBehavior.HasError="{Binding ageError, Mode=TwoWay}" Width="50" Margin="5, 10" FontSize="17" ToolTip="Range 0 - 130">
                         <TextBox.Text>
                             <Binding Path="NewPerson.age" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:AgeRangeRule ValidatesOnTargetUpdated="True"/>
+                                    <vr:AgeRangeRule ValidationStep="UpdatedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -165,7 +165,7 @@
                         <TextBox.Text>
                             <Binding Path="NewPerson.address.zip" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <vr:ZipRules/>
+                                    <vr:ZipRules ValidationStep="UpdatedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>

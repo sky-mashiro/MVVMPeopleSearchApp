@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Controls;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -13,7 +14,20 @@ namespace PeopleSearchApp.ViewModel.ValidationRules
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            string zip = value as string;
+            string zip = "";
+
+            if (value is BindingExpression)
+            {
+                var be = value as BindingExpression;
+                if (be != null)
+                {
+                    var item = be.DataItem as MainWindowViewModel;
+                    zip = item.NewPerson.address.zip;
+                }
+            }
+            else
+                zip = value as string;
+
             if (string.IsNullOrEmpty(zip))
             {
                 return new ValidationResult(true, null);

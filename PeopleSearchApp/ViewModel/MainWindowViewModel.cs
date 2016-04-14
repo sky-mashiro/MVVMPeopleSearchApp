@@ -68,16 +68,6 @@ namespace PeopleSearchApp.ViewModel
             }
         }
 
-        private string _age;
-        public string Age
-        {
-            get { return _age; }
-            set
-            {
-                _age = value;
-                OnPropertyChanged();
-            }
-        }
 
         private ObservableCollection<Person> _people;
         public ObservableCollection<Person> People
@@ -181,24 +171,33 @@ namespace PeopleSearchApp.ViewModel
             //System.Windows.Forms.MessageBox.Show("Successful Added~!");
 
             People = peopleRepo.GetAllRecord();
+
+            ID = "";
+            NewPerson = new Person();
+
+            //Clear existing data~
         }
         bool AddCanExecute(object param)
         {
-            //if ((NewPerson.age < 0) || (NewPerson.age > 130))
-            //{
-            //    return false;
-            //}
-            //else
-            //{
-            //    return true;
-            //}
-            idError = !(new IDRules().Validate(ID, null).IsValid);
-            firstNameError = !(new FirstNameRules().Validate(NewPerson.firstName, null).IsValid);
-            lastNameError = !(new LastNameRules().Validate(NewPerson.lastName, null).IsValid);
-            ageError = !(new AgeRangeRule().Validate(NewPerson.age, null).IsValid);
-            zipError = !(new ZipRules().Validate(NewPerson.address.zip, null).IsValid);
+            if (new IDRules().Validate(ID, null).IsValid)
+            {
+                if (new FirstNameRules().Validate(NewPerson.firstName, null).IsValid)
+                {
+                    if (new LastNameRules().Validate(NewPerson.lastName, null).IsValid)
+                    {
+                        if (new AgeRangeRule().Validate(NewPerson.age, null).IsValid)
+                        {
+                            if (new ZipRules().Validate(NewPerson.address.zip, null).IsValid)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
 
-            return NoError;
+            return false;
+
             //return new AgeRangeRule().Validate(NewPerson.age);
             //else return !Validation.GetHasError(param as DependencyObject);
         }

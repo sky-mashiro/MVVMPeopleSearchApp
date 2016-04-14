@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Controls;
 
 namespace PeopleSearchApp.ViewModel.ValidationRules
@@ -23,12 +24,26 @@ namespace PeopleSearchApp.ViewModel.ValidationRules
         {
             int age = 0;
 
+            string _age = "";
+
+            if (value is BindingExpression)
+            {
+                var be = value as BindingExpression;
+                if (be != null)
+                {
+                    var item = be.DataItem as MainWindowViewModel;
+                    _age = item.NewPerson.age;
+                }
+            }
+            else
+                _age = value as string;
+
             try
             {
-                if (string.IsNullOrEmpty(value as string))
+                if (string.IsNullOrEmpty(_age))
                     return new ValidationResult(true, null);
 
-                age = Int32.Parse(value as string);
+                age = Int32.Parse(_age);
             }
             catch
             {
